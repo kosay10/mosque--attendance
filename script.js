@@ -1,5 +1,7 @@
-// כתובת ה-API של ה-Web App
-const API_URL = "https://script.google.com/macros/s/AKfycbwzgPbR8qg2v32GSroJi7SRXb5cvdcIO_23TXh4igcouAHM2crMyeH4zOx4TU3OWt2E/exec";
+// ה-URL של הפרוקסי
+const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+// ה-URL של ה-Web App
+const API_URL = `${PROXY_URL}https://script.google.com/macros/s/AKfycbwzgPbR8qg2v32GSroJi7SRXb5cvdcIO_23TXh4igcouAHM2crMyeH4zOx4TU3OWt2E/exec`;
 
 // זמני תפילות
 const prayerTimes = [
@@ -37,26 +39,30 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
   const name = document.getElementById('name').value;
   const phone = document.getElementById('phone').value;
 
-  // שליחת הנתונים ל-API
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      phone: phone,
-      points: 1
-    })
-  });
+  try {
+    // שליחת הנתונים ל-API דרך השרת פרוקסי
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        points: 1
+      })
+    });
 
-  if (response.ok) {
-    document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
-    setTimeout(() => {
-      window.location.href = "https://instagram.com/good.traces";
-    }, 2000);
-  } else {
-    document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
+    if (response.ok) {
+      document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
+      setTimeout(() => {
+        window.location.href = "https://instagram.com/good.traces";
+      }, 2000);
+    } else {
+      document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    document.getElementById('message').innerText = "שגיאה. נסה שוב מאוחר יותר.";
   }
 });
-
