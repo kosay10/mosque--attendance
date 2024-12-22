@@ -7,6 +7,7 @@ const prayerTimes = [
   { hour: 11, minute: 44 }, // ד'והר
   { hour: 14, minute: 29 }, // עאסר
   { hour: 16, minute: 49 }, // מגריב
+  { hour: 19, minute: 57 }, // דמוי תפילה לשעה 19:57
   { hour: 18, minute: 19 }  // עישה
 ];
 
