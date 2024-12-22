@@ -1,6 +1,5 @@
-
 // ה-URL של ה-Web App
-const API_URL = `https://https://script.google.com/macros/s/AKfycbwKQCgoe2O2zk-FFcpI6MFdBcPUzmSAK_ELNDoXQyU/dev`;
+const API_URL = "https://script.google.com/macros/s/AKfycbwKQCgoe2O2zk-FFcpI6MFdBcPUzmSAK_ELNDoXQyU/dev";
 
 // זמני תפילות
 const prayerTimes = [
@@ -8,7 +7,7 @@ const prayerTimes = [
   { hour: 11, minute: 44 }, // ד'והר
   { hour: 14, minute: 29 }, // עאסר
   { hour: 16, minute: 49 }, // מגריב
-  { hour: 21, minute: 57 }, // דמוי תפילה לשעה 19:57
+  { hour: 22, minute: 35 }, // דמוי תפילה לשעה 22:35
   { hour: 18, minute: 19 }  // עישה
 ];
 
@@ -35,8 +34,13 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
     return;
   }
 
-  const name = document.getElementById('name').value;
-  const phone = document.getElementById('phone').value;
+  const name = document.getElementById('name').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+
+  if (!name || !phone) {
+    document.getElementById('message').innerText = "אנא מלא את כל השדות.";
+    return;
+  }
 
   try {
     // שליחת הנתונים ל-API דרך השרת פרוקסי
@@ -65,3 +69,4 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
     document.getElementById('message').innerText = "שגיאה. נסה שוב מאוחר יותר.";
   }
 });
+
