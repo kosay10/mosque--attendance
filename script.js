@@ -1,7 +1,6 @@
-// ה-URL של הפרוקסי
-const PROXY_URL = "https://cors-anywhere.herokuapp.com/";
+
 // ה-URL של ה-Web App
-const API_URL = `${PROXY_URL}https://script.google.com/macros/s/AKfycbwKQCgoe2O2zk-FFcpI6MFdBcPUzmSAK_ELNDoXQyU/dev`;
+const API_URL = `https://https://script.google.com/macros/s/AKfycbwKQCgoe2O2zk-FFcpI6MFdBcPUzmSAK_ELNDoXQyU/dev`;
 
 // זמני תפילות
 const prayerTimes = [
