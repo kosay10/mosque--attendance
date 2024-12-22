@@ -1,5 +1,5 @@
 // כתובת ה-API של ה-Web App
-const API_URL = "https://script.google.com/macros/s/AKfycbwx2aCa_0KdkLY8Gb5n77sEWgAIMLA5as0y1NUKvzKmIWOCKYcRVTSddoeFF03c8VK0MA/exec";
+const API_URL = "https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbwx2aCa_0KdkLY8Gb5n77sEWgAIMLA5as0y1NUKvzKmIWOCKYcRVTSddoeFF03c8VK0MA/exec";
 
 // זמני תפילות
 const prayerTimes = [
