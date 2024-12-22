@@ -1,5 +1,5 @@
 // כתובת ה-API של ה-Web App
-const API_URL = "https://cors-anywhere.herokuapp.com/https://script.google.com/macros/s/AKfycbwx2aCa_0KdkLY8Gb5n77sEWgAIMLA5as0y1NUKvzKmIWOCKYcRVTSddoeFF03c8VK0MA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwx2aCa_0KdkLY8Gb5n77sEWgAIMLA5as0y1NUKvzKmIWOCKYcRVTSddoeFF03c8VKOMA/exec";
 
 // זמני תפילות
 const prayerTimes = [
@@ -38,24 +38,31 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
   const phone = document.getElementById('phone').value;
 
   // שליחת הנתונים ל-API
-  const response = await fetch(API_URL, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      name: name,
-      phone: phone,
-      points: 1
-    })
-  });
+  try {
+    const response = await fetch(API_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        name: name,
+        phone: phone,
+        points: 1
+      })
+    });
 
-  if (response.ok) {
-    document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
-    setTimeout(() => {
-      window.location.href = "https://instagram.com/good.traces";
-    }, 2000);
-  } else {
+    const data = await response.json();
+    if (data.status === "success") {
+      document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
+      setTimeout(() => {
+        window.location.href = "https://instagram.com/good.traces";
+      }, 2000);
+    } else {
+      document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
+    }
+  } catch (error) {
+    console.error("Error:", error);
     document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
   }
 });
+
