@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>تسجيل الحضور</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <img src="logo.jpeg" alt="לוגו העמותה" style="width: 150px; margin-bottom: 20px;">
-  <div id="content">
+  <div class="container">
+    <img src="logo.jpeg" alt="Mosque Logo" class="logo">
     <h1>تسجيل الحضور</h1>
     <form id="attendanceForm">
       <input type="text" id="name" placeholder="الاسم الكامل" required>
-      <input type="tel" id="phone" placeholder="رقم الهاتف" required>
+      <input type="text" id="phone" placeholder="رقم الهاتف" required>
       <button type="submit">تسجيل</button>
     </form>
-    <div id="message"></div>
+    <p id="message"></p>
   </div>
   <script src="script.js"></script>
 </body>
 </html>
+
