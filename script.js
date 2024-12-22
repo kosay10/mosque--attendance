@@ -1,5 +1,5 @@
 // כתובת ה-API של ה-Web App
-const API_URL = "https://script.google.com/macros/s/AKfycbwx2aCa_0KdkLY8Gb5n77sEWgAIMLA5as0y1NUKvzKmIWOCKYcRVTSddoeFF03c8VKOMA/exec";
+const API_URL = "https://script.google.com/macros/s/AKfycbwzgPbR8qg2v32GSroJi7SRXb5cvdcIO_23TXh4igcouAHM2crMyeH4zOx4TU3OWt2E/exec";
 
 // זמני תפילות
 const prayerTimes = [
@@ -7,7 +7,7 @@ const prayerTimes = [
   { hour: 11, minute: 44 }, // ד'והר
   { hour: 14, minute: 29 }, // עאסר
   { hour: 16, minute: 49 }, // מגריב
-  { hour: 19, minute: 57 }, // דמוי תפילה לשעה 19:57
+  { hour: 21, minute: 57 }, // דמוי תפילה לשעה 19:57
   { hour: 18, minute: 19 }  // עישה
 ];
 
@@ -38,30 +38,24 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
   const phone = document.getElementById('phone').value;
 
   // שליחת הנתונים ל-API
-  try {
-    const response = await fetch(API_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        phone: phone,
-        points: 1
-      })
-    });
+  const response = await fetch(API_URL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      name: name,
+      phone: phone,
+      points: 1
+    })
+  });
 
-    const data = await response.json();
-    if (data.status === "success") {
-      document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
-      setTimeout(() => {
-        window.location.href = "https://instagram.com/good.traces";
-      }, 2000);
-    } else {
-      document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
-    }
-  } catch (error) {
-    console.error("Error:", error);
+  if (response.ok) {
+    document.getElementById('message').innerText = "تم تسجيل حضورك بنجاح!";
+    setTimeout(() => {
+      window.location.href = "https://instagram.com/good.traces";
+    }, 2000);
+  } else {
     document.getElementById('message').innerText = "حدث خطأ. حاول مرة أخرى.";
   }
 });
